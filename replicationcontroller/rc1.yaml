@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  creationTimestamp: null
+  labels:
+    run: rc
+  name: rc
+spec:
+  replicas: 2
+  selector:
+    run: rc
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: rc
+    spec:
+      containers:
+      - image: muhammadali448/nodejsappkuber
+        name: rc
+        ports:
+        - name: portrc
+          containerPort: 3000
+        resources: {}
+status:
+  replicas: 0
