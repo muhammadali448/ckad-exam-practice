@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: helloworld-dp1
+  name: helloworld-dp1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: helloworld-dp1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: helloworld-dp1
+    spec:
+      containers:
+      - image: muhammadali448/nodejsappkuber
+        name: helloworld-dp1
+        ports:
+        - containerPort: 3000
+        resources: {}
+status: {}
