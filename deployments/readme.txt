@@ -31,3 +31,10 @@ kubectl describe deploy helloworld-dp1 | grep -i image
 kubectl rollout status deployment helloworld-dp1
 // undo to a previous version
 kubectl rollout undo deployment helloworld-dp1 --to-revision=2
+// Create the deployment with nodeSelector
+kubectl create -f nodeSelector.yaml
+// If you check po its not running because it could find the matching node
+// So, you have to label minikube because you only have one node
+kubectl label node minikube hardware=high-spec
+// create a livenessProbe deployment
+kubectl create -f healthliveness.yaml

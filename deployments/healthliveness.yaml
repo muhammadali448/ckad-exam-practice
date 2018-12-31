@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: hello-dp3-liveness
+  name: hello-dp3-liveness
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: hello-dp3-liveness
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: hello-dp3-liveness
+    spec:
+      containers:
+      - image: muhammadali448/nodejsappkuber
+        name: hello-dp3-liveness
+        ports:
+        - name: nodejs-port
+          containerPort: 3000
+        resources: {}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: nodejs-port
+          initialDelaySeconds: 15
+          timeoutSeconds: 30   
+status: {}

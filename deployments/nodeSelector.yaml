@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: helloworld-dp2ns
+  name: helloworld-dp2ns
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: helloworld-dp2ns
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: helloworld-dp2ns
+    spec:
+      containers:
+      - image: muhammadali448/nodejsappkuber
+        name: helloworld-dp2ns
+        ports:
+        - containerPort: 3000
+        resources: {}
+      nodeSelector: 
+        hardware: high-spec  
+status: {}
