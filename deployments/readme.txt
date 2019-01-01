@@ -38,3 +38,15 @@ kubectl create -f nodeSelector.yaml
 kubectl label node minikube hardware=high-spec
 // create a livenessProbe deployment
 kubectl create -f healthliveness.yaml
+
+// create a secret
+kubectl create secret generic --from-literal=username=admin --from-literal=password=admin123 --type=Opaque --dry-run -o yaml > secretusingvolumes.yaml
+// create it
+kubectl create -f secretusingvolumes.yaml
+
+// see the base64 secret
+kubectl get secret user-login-s -o yaml --export
+// copy the base64 
+echo username | base64 -d
+echo password | base64 -d
+
