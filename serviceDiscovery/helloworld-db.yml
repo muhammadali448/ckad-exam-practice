@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: helloworld-db
+  name: helloworld-db
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: helloworld-db
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: helloworld-db
+    spec:
+      containers:
+      - image: muhammadali448/nodejsappkuber
+        name: helloworld-db
+        command: ["node", "index-db.js"]
+        ports:
+        - name: nodejs-port
+          containerPort: 3000
+        resources: {}
+        env:
+          - name: MYSQL_HOST
+            value: database-service
+          - name: MYSQL_USER
+            value: root
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: helloworld-secrets
+                key: rootPassword
+          - name: MYSQL_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: helloworld-secrets
+                key: database
+                 
